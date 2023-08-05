@@ -5,24 +5,19 @@ const { MongoClient } = require('mongodb');
 const app = express();
 const port = 3000;
 
-// Example intrusion data with the name "nikhil"
+
 const exampleIntrusionData = {
-  // ... (your example intrusion data here)
+  
 };
 
-// Endpoint to simulate posting an intrusion attack to the API
 app.post('/post-intrusion', async (req, res) => {
   try {
-    // Replace 'API_URL' with the actual API URL
     const apiUrl = 'https://uml-api.vercel.app/api/scanResults';
 
-    // Update the name to "nikhil"
     const intrusionData = {
       ...exampleIntrusionData,
-       // Add the "name" field with the value "nikhil"
     };
 
-    // Post the intrusion data to the API
     await axios.post(apiUrl, intrusionData);
 
     res.json({ message: 'Intrusion attack posted successfully' });
@@ -32,23 +27,22 @@ app.post('/post-intrusion', async (req, res) => {
   }
 });
 
-// Endpoint to delete all data from MongoDB collection
 app.delete('/delete-data', async (req, res) => {
-  const connectionString = 'mongodb+srv://offsecnish2609:offmongo@cluster0.wwxsx22.mongodb.net/?retryWrites=true&w=majority'; // Replace with your MongoDB connection string
-  const databaseName = 'test'; // Replace with your database name
-  const collectionName = 'scanresults'; // Replace with your collection name
+  const connectionString = ''; // Replace with your MongoDB connection string
+  const databaseName = 'test'; 
+  const collectionName = 'scanresults'; 
 
   try {
     const client = await MongoClient.connect(connectionString);
     const db = client.db(databaseName);
     const collection = db.collection(collectionName);
 
-    // Delete all documents in the collection
+    
     await collection.deleteMany({});
 
     console.log('All data in the collection deleted successfully.');
 
-    client.close(); // Close the MongoDB client
+    client.close(); 
 
     res.json({ message: 'Data deleted successfully' });
   } catch (error) {
